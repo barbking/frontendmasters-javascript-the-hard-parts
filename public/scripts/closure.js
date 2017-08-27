@@ -1,3 +1,4 @@
+// http://csbin.io/closures
 // console.log('Hello, world!');
 // Create a function createFunction that creates and returns a function.
  // When that created function is called, it should print "hello".
