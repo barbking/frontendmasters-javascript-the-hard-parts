@@ -60,7 +60,6 @@ function mapWith(array, instructions) {
     console.log(element);
   }
 	forEach(array, applyToEachElement)
-
 }
 
 console.log(mapWith([1,2,3],addTwo))

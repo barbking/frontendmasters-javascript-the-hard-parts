@@ -102,21 +102,26 @@ function once(func) {
 var onceifiedAddByTo = once(addByTwo);
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-console.log(onceifiedAddByTo(4));  //should log 6
-console.log(onceifiedAddByTo(10));  //should log 6
-console.log(onceifiedAddByTo(9001));  //should log 6
+// console.log(onceifiedAddByTo(4));  //should log 6
+// console.log(onceifiedAddByTo(10));  //should log 6
+// console.log(onceifiedAddByTo(9001));  //should log 6
 
 /*Write a function after that takes the number of times the callback needs to be
 called before being executed as the first parameter and the callback as the second
 parameter.*/
 function after(count, func) {
-
+	let i = 0;
+   while (i < count) {
+		 func;
+		 i++;
+	 }
+	 return func();
 }
 
-var called = function() { console.log('hello') };
+var called = function() { console.log('hello'); };
 var afterCalled = after(3, called);
 
-// afterCalled(); -> nothing is printed
+//afterCalled(); -> nothing is printed
 // afterCalled(); -> nothing is printed
 // afterCalled(); -> 'hello' is printed
 
@@ -125,5 +130,7 @@ in milliseconds before allowing the callback to be invoked as the second paramet
 Any additional arguments after wait are provided to func when it is invoked.
  HINT: research setTimeout();*/
 function delay(func, wait) {
-
+  setTimeout(func, wait);
 }
+var called = function() { console.log('hello'); };
+var afterCalled = delay(called,3000);
