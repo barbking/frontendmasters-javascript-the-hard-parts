@@ -38,15 +38,25 @@ function map(array, callback) {
 
 
 // Challenge 4
-// The function forEach takes an array and a callback, and runs the callback on each element of the array. forEach does not return anything.
+// The function forEach takes an array and a callback, and runs the callback on each
+// element of the array. forEach does not return anything.
 function forEach(array, callback) {
-  for (var i=0; i<array.length; i++) {
-    callback(array[i]);
+  let newArray = [];
+  for (let i=0; i<array.length; i++) {
+    newArray.push(callback(array[i]));
   }
+  // console.log(newArray);
+  return newArray;
 }
 
+var alphabet = '';
+var letters = ['a', 'b', 'c', 'd'];
+forEach(letters, function(char) {
+  alphabet += char;
+});
+console.log(alphabet);   //prints 'abcd'
 // see for yourself if your forEach works!
-
+// console.log(forEach([1, 2, 3], addTwo));
 //--------------------------------------------------
 // Extension
 //--------------------------------------------------
@@ -55,14 +65,10 @@ function forEach(array, callback) {
 // In the first part of the extension, you're going to rebuild map as mapWith.
 // This time you're going to use forEach inside of mapWith instead of using a for loop.
 function mapWith(array, instructions) {
-  let newArray = [];
-  function applyToEachElement(element){
-    console.log(element);
-  }
-	forEach(array, applyToEachElement)
+	return forEach(array, instructions);
 }
 
-console.log(mapWith([1,2,3],addTwo))
+console.log(mapWith([1,2,3],addTwo));
 
 //Extension 2
 // The function reduce takes an array and reduces the elements to a single value. F
@@ -75,17 +81,42 @@ console.log(mapWith([1,2,3],addTwo))
 //  to make it 5.
 //  Finally add(5, 3) brings it to 8, which is returned.
 function reduce(array, callback, initialValue) {
-
+  let accumulator = initialValue;
+  for (let i = 0; i<array.length; i++){
+    accumulator = callback(accumulator,array[i]);
+  }
+  return accumulator;
 }
-
+var nums = [4, 1, 3];
+var add = function(a, b) { return a + b; }
+console.log(reduce(nums, add, 0));   //-> 8
 //Extension 3
 // Construct a function intersection that compares input arrays and returns a new array with elements
 // found in all of the inputs. BONUS: Use reduce!
 function intersection(arrays) {
-
+  console.log(arrays);
+  let newArray = [];
+  var match = arrays.reduce(
+  function(a, b) {
+    console.log('a:',a,b);
+    if (a.length==0) {
+      b.concat(a);
+    }
+    for (let i = 0; i<a.length; i++){
+      for (let j = 0; j<b.length; j++) {
+        if (a[i] == b[j]) {
+          console.log(newArray);
+        newArray.push(a);
+      }
+    }
+    b = newArray;
+  }
+  return newArray;
+}, [] );
+  // return match;
 }
 
-// console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
+console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [15, 5]
 
 //Extension 4
