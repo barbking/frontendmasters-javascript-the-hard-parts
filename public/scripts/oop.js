@@ -13,7 +13,7 @@ add a name property to the newly created object with its value being the 'name' 
 add an age property to the newly created object with its value being the 'age' argument passed into the function
 return the object*/
 function makePerson(name, age) {
- let ourObject = {}
+ let ourObject = {};
  ourObject.name = name;
   ourObject.age = age;
 	return ourObject;// add code here
@@ -33,16 +33,14 @@ var vicky = makePerson('Vicky', 24);
 
 /*** CHALLENGE 1 of 3 ***/
 /*Inside personStore object, create a property greet where the value is a function that logs "hello".*/
-var personStore = {
-  greet:function(){
+let personStore = {
+  greet: function() {
     console.log("hello");
   }	// add code here
 };
 
 // /********* Uncomment this line to test your work! *********/
 //  personStore.greet(); // -> Logs 'hello'
-
-
 
 /*** CHALLENGE 2 of 3 ***/
 /* Create a function personFromPersonStore that takes as input a name and an age.
@@ -52,9 +50,7 @@ function personFromPersonStore(name, age) {
 	var ourStore = Object.create(personStore);
  	ourStore.name = name;
   ourStore.age = age;
-  ourStore.greet = function(){console.log("hello")};
   return ourStore;
-
 }
 
 var sandra = personFromPersonStore('Sandra', 26);
@@ -81,34 +77,33 @@ personStore.introduce = function(){console.log("Hi, my name is "+ this.name)}
 property onto its scope called greet. greet should be a function that logs the string 'hello'. */
 function PersonConstructor() {
 	this.greet = function(){
-    (console.log("hello"))
-  }
+    (console.log("hello"));
+  };
 }
-
 
 // /********* Uncomment this line to test your work! *********/
 var simon = new PersonConstructor;
-simon.greet(); // -> Logs 'hello'
+// simon.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
 /* Create a function personFromConstructor that takes as input a name and an age. When called,
  the function will create person objects using the new keyword instead of the Object.create method.*/
-function personFromConstructor(name, age) {
+function personFromConstructor (name, age) {
   this.name = name;
   this.age = age;
 }
 
 var mike = new personFromConstructor('Mike', 30);
-console.log(mike);
+// console.log(mike);
 
 personFromConstructor.prototype.greet = function () {
   console.log("hello");
-}
+};
 
 // /********* Uncomment these lines to test your work! *********/
-console.log(mike.name); // -> Logs 'Mike'
-console.log(mike.age); //-> Logs 30
-mike.greet(); //-> Logs 'hello'
+// console.log(mike.name); // -> Logs 'Mike'
+// console.log(mike.age); //-> Logs 30
+// mike.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
 /* Without editing the code you've already written, add an introduce method to the
@@ -116,10 +111,9 @@ PersonConstructor function that logs "Hi, my name is [name]".*/
 // add code here
 personFromConstructor.prototype.introduce = function () {
   console.log ("Hi, my name is "+ this.name);
-}
+};
 
-mike.introduce(); // -> Logs 'Hi, my name is Mike'
-
+// mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
 /****************************************************************
                         USING ES6 CLASSES
@@ -132,41 +126,29 @@ class PersonClass {
 	constructor(name) {
     this.name = name;
 	}
-  greet = function () {
+  greet () {
     console.log("hello");
-
   }
-
 }
-
 
 // /********* Uncomment this line to test your work! *********/
 var george = new PersonClass;
-// george.greet(); // -> Logs 'hello'
-
-
+george.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
 /*Create a class DeveloperClass that creates objects by extending the PersonClass class.
 In addition to having a name property and greet method, DeveloperClass should have an introduce method.
  When called, introduce should log the string 'Hello World, my name is [name]'. */
 // add code here
-
-
+class DeveloperClass extends PersonClass {
+  introduce() {
+    console.log("Hello World, my name is " + this.name + ".");
+  }
+}
 // /********* Uncomment these lines to test your work! *********/
-// var thai = new DeveloperClass('Thai', 32);
-// console.log(thai.name); // -> Logs 'Thai'
-
-
-
-/*** CHALLENGE 3 of 3 ***/
-/* */
-// add code here
-
-// /********* Uncomment these lines to test your work! *********/
-// thai.introduce(); //-> Logs 'Hello World, my name is Thai'
-
-
+var thai = new DeveloperClass('Thai', 32);
+console.log(thai.name); // -> Logs 'Thai'
+thai.introduce(); //-> Logs 'Hello World, my name is Thai'
 
 /****************************************************************
                       EXTENSION: SUBCLASSING
